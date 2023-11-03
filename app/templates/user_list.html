@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if user_list %}
+    <ul>
+    {% for user in user_list %}
+        <li><a href="{{ url_for('main.detail', user_id = user.id, use_db = use_db) }}">{{ user.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>사용자가 없습니다.</p>
+{% endif %}
+{% endblock %}

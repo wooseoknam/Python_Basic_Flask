@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>{{ user.name }}</div>
+<div>{{ user.age }}</div>
+<!-- <img src="{{ url_for('static', filename = 'uploads/' + user_id + '.jpg') }}"/> -->
+
+<!-- <button id="get-image-btn">Get Image</button> -->
+<br>
+<img id="print_image">
+
+<script>
+    $(document).ready(function() {
+
+        // $('#get-image-btn').click(function() {
+            $.ajax({
+                url: '{{ url_for("main.get_image", user_id = user_id) }}',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    $('#print_image').attr('src', response.thumbnail);
+                }
+            // });
+        });
+    });
+</script>
+{% endblock %}

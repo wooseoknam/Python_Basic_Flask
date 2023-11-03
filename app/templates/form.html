@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <form method="post" class="my-3" enctype="multipart/form-data">
+        {{ form.csrf_token }}
+
+        {{ form.name.label }}
+        {{ form.name() }}
+
+        {{ form.age.label }}
+        {{ form.age() }}
+
+        {{ form.image_name.label }}
+        {{ form.image_name()}}
+
+        {% if (form.image_name.errors) %}
+            <span class="validation_error">{{ ', '.join(form.image_name.errors) }}</span>
+        {% endif %}
+
+        <!-- <input id="image_name" name="image_name" type="file" accept="image/*"/> -->
+    <button type="submit" class="btn btn-primary">등록하기</button><br>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    </form>
+</div>
+{% endblock %}

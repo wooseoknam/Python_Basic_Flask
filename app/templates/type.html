@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
+<a href="{{ url_for('main.list_users', use_db = 1) }}">Use DB</a>
+<a href="{{ url_for('main.list_users', use_db = 0) }}">Use TXT</a>
+{% endblock %}
